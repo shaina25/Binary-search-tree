@@ -1,0 +1,43 @@
+"""
+class Node:
+    def __init__(self, value):
+        self.left = None
+        self.data = value
+        self.right = None
+""" 
+
+# Function should return an 1/0 or True/False
+def isBST(root):
+    # Code here
+    if root is None:
+        return True
+    else:
+        result = False
+        if (root.right is not None) and (root.left is not None):
+            min_val_right = getMin(root.right)
+            max_val_left = getMax(root.left)
+            result = min_val_right > root.data and max_val_left < root.data
+        elif root.left is not None:
+            max_val_left = getMax(root.left)
+            result = max_val_left < root.data
+        elif root.right is not None:
+            min_val_right = getMin(root.right)
+            result = min_val_right > root.data
+        else:
+            result = True
+        return result and isBST(root.right) and isBST(root.left)
+            
+            
+    
+# given a binary tree, return the min value
+def getMin(root):
+    if root.left is not None:
+        return getMin(root.left)
+    else:
+        return root.data
+        
+def getMax(root):
+    if root.right is not None:
+        return getMin(root.right)
+    else:
+        return root.data"# Binary-search-tree" 
